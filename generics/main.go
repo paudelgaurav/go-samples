@@ -17,10 +17,21 @@ func SumFloats(m map[string]float64) (s float64) {
 }
 
 func SumIntsOrFloats[K comparable, V int64 | float64](m map[K]V) (s V) {
-	for _, v := range m{
+	for _, v := range m {
 		s += v
 	}
 	return s
+}
+
+type Number interface {
+	int8 | int64 | float64
+}
+
+func SumNumbers[N Number](nums []N) (sum N) {
+	for _, v := range nums {
+		sum += v
+	}
+	return sum
 }
 
 func main() {
@@ -41,4 +52,12 @@ func main() {
 	fmt.Printf("Generic Sums: %v and %v\n",
 		SumIntsOrFloats(ints),
 		SumIntsOrFloats(floats))
+
+	int_array := []int64{32, 64, 96, 128}
+	float_array := []float64{32.0, 64.0, 96.1, 128.2}
+	bytes_array := []int8{8, 16, 24, 32}
+
+	fmt.Println(SumNumbers(int_array))
+	fmt.Println(SumNumbers(float_array))
+	fmt.Println(SumNumbers(bytes_array))
 }
