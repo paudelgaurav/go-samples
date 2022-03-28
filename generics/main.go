@@ -34,6 +34,13 @@ func SumNumbers[N Number](nums []N) (sum N) {
 	return sum
 }
 
+// any can be used instead of interface{}
+func Print[T any] (s []T) {
+	for _, v := range s {
+		fmt.Println(v)
+	}
+}
+
 func main() {
 	ints := map[string]int64{
 		"first":  12,
@@ -60,4 +67,11 @@ func main() {
 	fmt.Println(SumNumbers(int_array))
 	fmt.Println(SumNumbers(float_array))
 	fmt.Println(SumNumbers(bytes_array))
+
+	fmt.Println("*********\n")
+	Print(int_array)
+	fmt.Println("*********")
+	Print(float_array)
+	fmt.Println("*********")
+	Print(bytes_array)
 }
