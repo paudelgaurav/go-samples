@@ -41,6 +41,14 @@ func Print[T any] (s []T) {
 	}
 }
 
+type CustomSlice[T Number] []T
+
+func PrintCustomSliceElems[N Number, T CustomSlice[N]] (s T) {
+	for _, v := range s {
+		fmt.Println(v)
+	}
+}
+
 func main() {
 	ints := map[string]int64{
 		"first":  12,
@@ -74,4 +82,14 @@ func main() {
 	Print(float_array)
 	fmt.Println("*********")
 	Print(bytes_array)
+
+	s1 := CustomSlice[int64]{32, 64, 96, 128}
+	s2 := CustomSlice[float64]{32.0, 64.0, 96.1, 128.2}
+	s3 := CustomSlice[int8]{8, 16, 24, 32}
+
+	fmt.Println("*********")
+	PrintCustomSliceElems(s1)
+	PrintCustomSliceElems(s2)
+	PrintCustomSliceElems(s3)
+
 }
