@@ -35,7 +35,7 @@ func SumNumbers[N Number](nums []N) (sum N) {
 }
 
 // any can be used instead of interface{}
-func Print[T any] (s []T) {
+func Print[T any](s []T) {
 	for _, v := range s {
 		fmt.Println(v)
 	}
@@ -43,7 +43,7 @@ func Print[T any] (s []T) {
 
 type CustomSlice[T Number] []T
 
-func PrintCustomSliceElems[N Number, T CustomSlice[N]] (s T) {
+func PrintCustomSliceElems[N Number, T CustomSlice[N]](s T) {
 	for _, v := range s {
 		fmt.Println(v)
 	}
@@ -76,7 +76,7 @@ func main() {
 	fmt.Println(SumNumbers(float_array))
 	fmt.Println(SumNumbers(bytes_array))
 
-	fmt.Println("*********\n")
+	fmt.Println("*********")
 	Print(int_array)
 	fmt.Println("*********")
 	Print(float_array)
