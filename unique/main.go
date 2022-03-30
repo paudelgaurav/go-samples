@@ -2,13 +2,12 @@ package main
 
 import "fmt"
 
-func unique(s []string) []string {
-	inResultMap := make(map[string]bool)
-	var result []string
+func unique(s []string) (result []string) {
+	inResultMap := make(map[string]struct{})
 
 	for _, str := range s {
-		if _, ok := inResultMap[str]; !ok {
-			inResultMap[str] = true
+		if _, found := inResultMap[str]; !found {
+			inResultMap[str] = struct{}{}
 			result = append(result, str)
 		}
 	}
@@ -16,11 +15,11 @@ func unique(s []string) []string {
 }
 
 func RemoveDuplicate[K comparable](s []K) (result []K) {
-	inResultMap := make(map[K]bool)
+	inResultMap := make(map[K]struct{})
 
 	for _, iter := range s {
-		if _, ok := inResultMap[iter]; !ok {
-			inResultMap[iter] = true
+		if _, found := inResultMap[iter]; !found {
+			inResultMap[iter] = struct{}{}
 			result = append(result, iter)
 		}
 	}
