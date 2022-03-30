@@ -49,6 +49,20 @@ func PrintCustomSliceElems[N Number, T CustomSlice[N]](s T) {
 	}
 }
 
+func GetDifferenceFromArrays[V comparable](array1, array2 []V) (difference []V) {
+	makeArray2 := make(map[V]bool, len(array2))
+	for _, item := range array2 {
+		makeArray2[item] = true
+	}
+
+	for _, item := range array1 {
+		if _, found := makeArray2[item]; !found {
+			difference = append(difference, item)
+		}
+	}
+	return difference
+}
+
 func main() {
 	ints := map[string]int64{
 		"first":  12,
@@ -92,4 +106,14 @@ func main() {
 	PrintCustomSliceElems(s2)
 	PrintCustomSliceElems(s3)
 
+	array1 := []string{"a", "b", "c"}
+	array2 := []string{"a", "e", "i"}
+
+	array3 := []uint{1, 2, 3, 4, 5}
+	array4 := []uint{2, 4, 6, 8, 10}
+
+	fmt.Println("Difference of two arrays are")
+	fmt.Println(GetDifferenceFromArrays(array1, array2))
+
+	fmt.Println(GetDifferenceFromArrays(array3, array4))
 }
