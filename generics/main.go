@@ -50,9 +50,9 @@ func PrintCustomSliceElems[N Number, T CustomSlice[N]](s T) {
 }
 
 func GetDifferenceFromArrays[V comparable](array1, array2 []V) (difference []V) {
-	makeArray2 := make(map[V]bool, len(array2))
+	makeArray2 := make(map[V]struct{}, len(array2))
 	for _, item := range array2 {
-		makeArray2[item] = true
+		makeArray2[item] = struct{}{}
 	}
 
 	for _, item := range array1 {
